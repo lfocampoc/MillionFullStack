@@ -1,4 +1,5 @@
-// Utilidad para formatear precios
+// Utilidades para formateo y funciones comunes
+
 export const formatPrice = (price: number): string => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -8,7 +9,11 @@ export const formatPrice = (price: number): string => {
   }).format(price);
 };
 
-// Utilidad para combinar clases CSS (útil para Tailwind)
-export const cn = (...classes: (string | undefined | null | false)[]): string => {
-  return classes.filter(Boolean).join(' ');
+export const formatCurrency = (amount: number, currency = 'USD'): string => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(amount);
 };

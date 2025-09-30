@@ -1,6 +1,7 @@
 'use client';
 
 import { Property } from '@/types/property';
+import { formatPrice } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -9,14 +10,6 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property }: PropertyCardProps) {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
 
   return (
     <div className="bg-background-light dark:bg-background-dark rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800 flex flex-col">

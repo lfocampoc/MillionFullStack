@@ -26,7 +26,7 @@ namespace RealEstateAPI.API.Middleware
 
                 await _next(context);
 
-                // Solo procesar respuestas exitosas (200-299)
+                // Solo proceso respuestas exitosas (códigos 200-299)
                 if (context.Response.StatusCode >= 200 && context.Response.StatusCode < 300)
                 {
                     await HandleSuccessResponse(context, responseBody, originalBodyStream);
@@ -121,7 +121,7 @@ namespace RealEstateAPI.API.Middleware
             await context.Response.WriteAsync(jsonResponse);
         }
 
-        private string GetErrorMessage(int statusCode)
+        public string GetErrorMessage(int statusCode)
         {
             return statusCode switch
             {

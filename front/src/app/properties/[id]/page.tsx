@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { Property } from '@/types/property';
 import { propertyService } from '@/services/propertyService';
+import { formatPrice } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -19,9 +20,9 @@ export default function PropertyDetailsPage() {
         setLoading(true);
         setError(null);
         const data = await propertyService.getPropertyById(params.id as string);
-        setProperty(data);
+        setProperty(data as Property);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error loading property');
+        setError(err instanceof Error ? err.message : 'Error al cargar la propiedad');
       } finally {
         setLoading(false);
       }
@@ -31,15 +32,6 @@ export default function PropertyDetailsPage() {
       loadProperty();
     }
   }, [params.id]);
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
 
   if (loading) {
     return (
@@ -65,14 +57,14 @@ export default function PropertyDetailsPage() {
       <div className="text-center py-12">
         <div className="text-6xl mb-4">🏠</div>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          Property not found
+          Propiedad no encontrada
         </h1>
         <Link 
           href="/"
           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
         >
           <span className="material-symbols-outlined">arrow_back</span>
-          Back to Listings
+          Volver a la lista
         </Link>
       </div>
     );
@@ -80,7 +72,7 @@ export default function PropertyDetailsPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Breadcrumb */}
+      {/* Navegación */}
       <div className="mb-6 text-sm font-medium text-slate-500 dark:text-slate-400">
         <Link className="hover:text-primary dark:hover:text-primary" href="/">
           Propiedades
@@ -89,7 +81,7 @@ export default function PropertyDetailsPage() {
         <span className="text-slate-800 dark:text-black">{property.name}</span>
       </div>
 
-      {/* Main Property Image */}
+      {/* Imagen principal */}
       <div className="w-full h-96 rounded-xl overflow-hidden mb-8 shadow-lg">
         <Image
           alt={property.name}
@@ -102,7 +94,7 @@ export default function PropertyDetailsPage() {
         />
       </div>
 
-      {/* Title and Price */}
+      {/* Título y precio */}
       <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
         <div className="flex-grow">
           <h1 className="text-4xl font-extrabold text-slate-900 dark:text-black mb-2">
@@ -117,44 +109,44 @@ export default function PropertyDetailsPage() {
         </div>
       </div>
 
-      {/* Description */}
+      {/* Descripción */}
       <div className="prose prose-lg max-w-none text-slate-600 dark:text-slate-300 mb-10">
         <p>
           Esta impresionante casa de 4 dormitorios y 3 baños ofrece una combinación perfecta de lujo y comodidad. Con una amplia sala de estar, una cocina gourmet y un patio trasero con piscina, es ideal para el entretenimiento. La suite principal cuenta con un baño en suite y un vestidor. Ubicada en un vecindario tranquilo, esta casa está cerca de escuelas, parques y tiendas.
         </p>
       </div>
 
-      {/* Property Details */}
+      {/* Detalles de la propiedad */}
       <div className="border-t border-b border-black/10 dark:border-white/10 divide-y divide-black/10 dark:divide-white/10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="p-4">
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Dirección</p>
-            <p className="text-base font-semibold text-slate-800 dark:text-white">{property.address}</p>
+            <p className="text-base font-semibold text-slate-800 dark:text-black">{property.address}</p>
           </div>
           <div className="p-4 md:border-l md:border-black/10 md:dark:border-white/10">
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Dormitorios</p>
-            <p className="text-base font-semibold text-slate-800 dark:text-white">4</p>
+            <p className="text-base font-semibold text-slate-800 dark:text-black">4</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="p-4">
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Baños</p>
-            <p className="text-base font-semibold text-slate-800 dark:text-white">3</p>
+            <p className="text-base font-semibold text-slate-800 dark:text-black">3</p>
           </div>
           <div className="p-4 md:border-l md:border-black/10 md:dark:border-white/10">
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Tamaño</p>
-            <p className="text-base font-semibold text-slate-800 dark:text-white">2,500 pies cuadrados</p>
+            <p className="text-base font-semibold text-slate-800 dark:text-black">2,500 pies cuadrados</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="p-4">
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Tipo de propiedad</p>
-            <p className="text-base font-semibold text-slate-800 dark:text-white">Residencial</p>
+            <p className="text-base font-semibold text-slate-800 dark:text-black">Residencial</p>
           </div>
         </div>
       </div>
 
-      {/* Back Button */}
+      {/* Botón de regreso */}
       <div className="mt-10">
         <Link 
           href="/"

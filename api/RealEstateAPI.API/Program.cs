@@ -85,9 +85,6 @@ app.UseCors("AllowAll");
 // Add Exception Handling Middleware first
 app.UseMiddleware<ExceptionMiddleware>();
 
-// Add Standard Response Middleware - DISABLED FOR NOW
-// app.UseMiddleware<ResponseMiddleware>();
-
 app.UseAuthorization();
 
 app.MapControllers();

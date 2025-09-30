@@ -1,4 +1,3 @@
-// Tipos para las propiedades basados en la API del backend
 export interface Property {
   id: string;
   name: string;
@@ -34,7 +33,6 @@ export interface ApiResponse<T> {
   error: string;
 }
 
-// Tipos para los componentes de UI
 export interface PropertyCardProps {
   property: Property;
   onClick?: (property: Property) => void;

@@ -12,7 +12,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Urban Nest - Real Estate",
+  title: "Million Propiedades - Real Estate",
   description: "Encuentra la propiedad de tus sueños. Explora nuestra exclusiva selección de propiedades de lujo en las mejores ubicaciones.",
 };
 

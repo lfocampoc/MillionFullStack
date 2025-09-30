@@ -31,12 +31,18 @@ namespace RealEstateAPI.Repository
             var filterBuilder = Builders<Property>.Filter;
             var filters = new List<FilterDefinition<Property>>();
 
+            // Búsqueda de texto: buscar en name Y address simultáneamente
             if (!string.IsNullOrEmpty(filter.Name))
             {
-                filters.Add(filterBuilder.Regex(p => p.Name, new MongoDB.Bson.BsonRegularExpression(filter.Name, "i")));
+                var textSearchFilter = filterBuilder.Or(
+                    filterBuilder.Regex(p => p.Name, new MongoDB.Bson.BsonRegularExpression(filter.Name, "i")),
+                    filterBuilder.Regex(p => p.Address, new MongoDB.Bson.BsonRegularExpression(filter.Name, "i"))
+                );
+                filters.Add(textSearchFilter);
             }
 
-            if (!string.IsNullOrEmpty(filter.Address))
+            // Filtro específico por dirección (si se proporciona por separado)
+            if (!string.IsNullOrEmpty(filter.Address) && string.IsNullOrEmpty(filter.Name))
             {
                 filters.Add(filterBuilder.Regex(p => p.Address, new MongoDB.Bson.BsonRegularExpression(filter.Address, "i")));
             }

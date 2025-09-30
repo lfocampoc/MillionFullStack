@@ -27,6 +27,7 @@ class PropertyService {
       return data.data;
     } catch (error) {
       console.error('Error en PropertyService:', error);
+      
       if (error instanceof TypeError && error.message.includes('fetch')) {
         throw new Error('No se pudo conectar con el servidor. Verifica que la API esté ejecutándose.');
       }

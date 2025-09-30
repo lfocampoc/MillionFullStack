@@ -1,4 +1,4 @@
-# Urban Nest - Frontend
+# Million Propiedades - Frontend
 
 Una aplicación web moderna para listar propiedades inmobiliarias, construida con Next.js 15, TypeScript y Tailwind CSS.
 
