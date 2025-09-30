@@ -1,6 +1,6 @@
 'use client';
 
-import { Property } from '@/types/property';
+import { Property } from '@/lib/types';
 import { formatPrice } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';

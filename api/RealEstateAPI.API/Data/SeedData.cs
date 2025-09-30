@@ -8,27 +8,23 @@ namespace RealEstateAPI.API.Data
     {
         public static async Task SeedDatabaseAsync(IMongoDatabase database)
         {
-            // Primero me aseguro de que las colecciones existan
             await CreateCollectionsIfNotExistAsync(database);
             
-            // Verifico si ya hay datos para evitar duplicados
             var propertiesCollection = database.GetCollection<Property>("properties");
             var ownersCollection = database.GetCollection<Owner>("owners");
             
             if (await propertiesCollection.CountDocumentsAsync(_ => true) > 0)
             {
-                return; // Ya hay datos, no necesito crear más
+                return;
             }
             
-            // Creo los propietarios de ejemplo primero
             var owners = CreateSampleOwners();
             await ownersCollection.InsertManyAsync(owners);
             
-            // Luego creo las propiedades usando los propietarios
             var properties = CreateSampleProperties(owners);
             await propertiesCollection.InsertManyAsync(properties);
             
-            Console.WriteLine("✅ Datos de prueba creados exitosamente");
+            Console.WriteLine("Datos de prueba creados exitosamente");
         }
         
         private static async Task CreateCollectionsIfNotExistAsync(IMongoDatabase database)

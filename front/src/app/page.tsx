@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Property, PropertyFilter } from '@/types/property';
+import { Property, PropertyFilter } from '@/lib/types';
 import { propertyService } from '@/services/propertyService';
 import { formatPrice } from '@/lib/utils';
 import Link from 'next/link';

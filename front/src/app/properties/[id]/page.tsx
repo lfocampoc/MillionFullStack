@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { Property } from '@/types/property';
+import { Property } from '@/lib/types';
 import { propertyService } from '@/services/propertyService';
 import { formatPrice } from '@/lib/utils';
 import Link from 'next/link';

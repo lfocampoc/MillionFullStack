@@ -55,25 +55,6 @@ class PropertyService {
     return this.request<Property>(API_CONFIG.ENDPOINTS.PROPERTY_BY_ID(id));
   }
 
-  async createProperty(property: Omit<Property, 'id'>): Promise<Property> {
-    return this.request<Property>(API_CONFIG.ENDPOINTS.CREATE_PROPERTY, {
-      method: 'POST',
-      body: JSON.stringify(property),
-    });
-  }
-
-  async updateProperty(id: string, property: Partial<Property>): Promise<Property> {
-    return this.request<Property>(API_CONFIG.ENDPOINTS.UPDATE_PROPERTY(id), {
-      method: 'PUT',
-      body: JSON.stringify(property),
-    });
-  }
-
-  async deleteProperty(id: string): Promise<void> {
-    return this.request<void>(API_CONFIG.ENDPOINTS.DELETE_PROPERTY(id), {
-      method: 'DELETE',
-    });
-  }
 }
 
 export const propertyService = new PropertyService();

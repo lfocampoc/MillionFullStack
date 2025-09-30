@@ -48,7 +48,7 @@ namespace RealEstateAPI.Business
                 return null;
 
             _mapper.Map(propertyDto, existingProperty);
-            existingProperty.Id = id; // Me aseguro de que el ID no cambie durante la actualización
+            existingProperty.Id = id;
 
             var updatedProperty = await _propertyRepository.UpdateAsync(id, existingProperty);
             return updatedProperty != null ? _mapper.Map<PropertyDto>(updatedProperty) : null;

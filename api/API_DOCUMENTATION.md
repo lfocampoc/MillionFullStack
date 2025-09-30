@@ -103,3 +103,15 @@ GET /api/properties?name=Casa&minPrice=100000&maxPrice=500000
 - **Swagger UI**: https://localhost:7030/swagger o https://localhost:44308/swagger/index.html
 - **Postman**: Usar archivo `api/RealEstateAPI.API.http`
 - **cURL**: Ejemplos incluidos arriba
+
+### Tests Unitarios
+```bash
+cd api/RealEstateAPI.Tests
+dotnet test
+```
+
+### Coverage Report
+```bash
+cd api/RealEstateAPI.Tests
+dotnet test --collect:"XPlat Code Coverage"
+```

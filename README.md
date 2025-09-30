@@ -1,8 +1,28 @@
-# Real Estate API - Full Stack Application
+# Real Estate Management System
 
-API REST con .NET 9 y frontend Next.js 15 para gestión de propiedades inmobiliarias.
+Sistema full stack para gestión de propiedades inmobiliarias desarrollado con .NET 9 y Next.js.
 
-## 🚀 Inicio Rápido
+## 📸 Capturas del Sistema
+
+### Backend - API Swagger
+![Backend Swagger](images/BackEnd%20Swagger.png)
+
+### API - Consulta de Propiedades
+![Backend Properties](images/BackEnd%20Swagger%20Get%20Properties.png)
+
+### Frontend - Lista de Propiedades
+![Frontend](images/FrontEnd.png)
+
+### Frontend - Detalles de Propiedad
+![Frontend Details](images/FrontEnd%20Details.png)
+
+### Base de Datos - Colecciones MongoDB
+![MongoDB Collections](images/MongoDb%20Colections.png)
+
+### Tests Unitarios
+![Unit Tests](images/UnitTest.png)
+
+## Inicio Rápido
 
 ### Prerrequisitos
 - .NET 9 SDK
@@ -15,9 +35,7 @@ cd api
 dotnet restore
 dotnet run --project RealEstateAPI.API
 ```
-La API se abrirá automáticamente en Swagger:
-- `https://localhost:7030/swagger/index.html` (Kestrel)
-- `https://localhost:44308/swagger/index.html` (IIS Express)
+La API se abre automáticamente en Swagger: `https://localhost:7030/swagger/index.html`
 
 ### Frontend
 ```bash
@@ -26,38 +44,41 @@ npm install
 cp env.example .env.local
 npm run dev
 ```
-**⚠️ IMPORTANTE**: Editar `.env.local` con:
+Editar `.env.local` con la URL de la API:
 ```env
 NEXT_PUBLIC_API_URL=https://localhost:7030/api
 ```
-Frontend: `http://localhost:3000`
 
-### Database
-- **SeedData automático**: Se carga al iniciar la API
-- **Backup manual**: `mongodump --db RealEstateDB --out ./backup`
+### Base de Datos
+Los datos de ejemplo se cargan automáticamente al iniciar la API.
 
-## 📊 Funcionalidades
+**Backup de MongoDB:**
+```bash
+mongodump --db RealEstateDB --out ./backup
+```
 
-- **API REST**: CRUD completo de propiedades
-- **Filtros**: Nombre, dirección, rango de precios
-- **Frontend**: Lista responsive con filtros
-- **Testing**: 87 tests unitarios con NUnit
-- **Base de Datos**: MongoDB con SeedData automático
+## Funcionalidades
 
-## 🧪 Tests
+- API REST con filtros por nombre, dirección y rango de precios
+- Frontend responsive con Next.js
+- Tests unitarios con NUnit
+- Arquitectura limpia con separación de capas
+
+## Tests
 
 ```bash
 cd api/RealEstateAPI.Tests
 dotnet test
 ```
 
-## 📚 Documentación
+### Coverage Report
+```bash
+cd api/RealEstateAPI.Tests
+dotnet test --collect:"XPlat Code Coverage"
+```
 
-- [API Documentation](api/API_DOCUMENTATION.md)
-- [Database Documentation](DATABASE_DOCUMENTATION.md)
-- [Installation Guide](INSTALLATION_GUIDE.md)
+## Tecnologías
 
-## 🔧 Tecnologías
-
-**Backend**: .NET 9, MongoDB, AutoMapper, FluentValidation, Serilog, NUnit  
-**Frontend**: Next.js 15, TypeScript, Tailwind CSS
+**Backend:** .NET 9, MongoDB, AutoMapper, FluentValidation, Serilog  
+**Frontend:** Next.js 15, TypeScript, Tailwind CSS  
+**Testing:** NUnit
